@@ -46,28 +46,28 @@ onMounted(() => {
     <v-row>
       <v-col cols="12">
         <v-card
-          class="mx-auto pa-10 text-h3"
+          class="mx-auto pa-5" :class="$vuetify.display.xs ? 'text-h5 text-center' : 'text-h3'"
           color="surface-variant"
           max-width="500"
         >
           Total Price : {{finalPrice}}
         </v-card>
       </v-col>
-      <v-col cols="4">
+
+      <v-col cols="12" sm="4">
         <v-card class="h-100">
-          <h1>Image</h1>
-          <!-- <IconPhotoFilled/> -->
+          <h1 class="text-h5">Image</h1>
           <v-img
             v-if="defaultItem.designUrl"
-            :width="300"
-            aspect-ratio="16/9"
+             
             cover
             :src="defaultItem.designUrl"
           ></v-img>
           <v-img
             v-else
-            :width="300"
-            height="300"
+           
+            cover
+            height="$vuetify.display.xs ? 200 : 300"
             class="d-flex justify-center align-center bg-grey"
           >
             <IconPhotoFilled class="w-100 h-25" />
@@ -76,6 +76,7 @@ onMounted(() => {
             v-model="defaultItem.designUrl"
             label="Enter your image url"
             class="ma-4 outlined"
+             :class="$vuetify.display.xs ? 'text-h6' : 'text-h5'"
           >
             <template #append>
               <IconUpload @click="uploadImage" />
@@ -84,22 +85,24 @@ onMounted(() => {
         </v-card>
       </v-col>
 
-      <v-col cols="8">
+      <v-col cols="12"  sm="8">
         <v-card class="h-100">
           <v-card-title>
-            <span class="text-h5">Edit Item</span>
+            <span :class="$vuetify.display.xs ? 'text-h6' : 'text-h5'">Edit Item</span>
+           
           </v-card-title>
 
           <v-card-text>
             <v-container>
               <v-row>
-                <v-col cols="12" sm="6">
+                <v-col cols="12"  md="4">
                   <v-text-field
                     v-model="defaultItem.name"
                     label="Name of item"
-                  ></v-text-field>
+                      :class="$vuetify.display.xs ? 'text-body-small' : 'text-body-medium'"
+                      ></v-text-field>
                 </v-col>
-                <v-col cols="12" sm="6">
+                <v-col cols="12" md="4">
                   <v-select
                     label="Select Category"
                     v-model="defaultItem.category"
@@ -112,20 +115,24 @@ onMounted(() => {
                       'Bangle',
                       'Bracelet',
                     ]"
+                    :class="$vuetify.display.xs ? 'text-body-small' : 'text-body-medium'"
                   ></v-select>
                 </v-col>
-                <v-col cols="12" sm="6">
-                  <v-textarea
-                    v-model="defaultItem.description"
-                    label="Description"
-                  ></v-textarea>
-                </v-col>
-                <v-col cols="12" sm="6">
+               
+                <v-col cols="12"  md="4">
                   <v-text-field
                     type="Number"
                     v-model="defaultItem.totalPrice"
                     label="TotalPrice"
+                    :class="$vuetify.display.xs ? 'text-body-small' : 'text-body-medium'"
                   ></v-text-field>
+                </v-col>
+                <v-col cols="12">
+                  <v-textarea
+                    v-model="defaultItem.description"
+                    label="Description"
+                    :class="$vuetify.display.xs ? 'text-body-small' : 'text-body-medium'"
+                  ></v-textarea>
                 </v-col>
               </v-row>
             </v-container>
